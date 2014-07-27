@@ -1,0 +1,7 @@
+<form action="{{ path('registration') }}" method="post" {{ form_enctype(register_form) }}>
+    {{ form_widget(register_form) }}
+{{ message_error }}
+    <br>
+    <input type="submit" />
+    <a href="{{ path('mainpage') }}"><input type="button" value="Главная"></a>
+</form>

@@ -1,0 +1,28 @@
+security:
+   encoders:
+        ITS\AtlasBundle\Entity\Users:  md5
+
+   providers:
+        main:
+            entity: { class: ITS\AtlasBundle\Entity\Users, property: username }
+
+   firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                default_target_path: default_security_target
+            logout:
+                  path: /logout
+                  target: /
+            security: true
+            anonymous: true
+
+   role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+
+   access_control:
+        - { path: /homepage/.*, role: ROLE_USER }
+        - { path: /admin/.*, role: ROLE_ADMIN }
+        - { path: /laborant/, role: ROLE_LAB }

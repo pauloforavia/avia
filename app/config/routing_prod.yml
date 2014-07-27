@@ -1,0 +1,9 @@
+_main:
+    resource: routing.yml
+
+not_found:
+    pattern: /{url}
+    defaults: { _controller: ITSAtlasBundle:Default:notFound }
+    methods:  [GET]
+    requirements:
+        url: ".+"

@@ -1,0 +1,22 @@
+mainpage:
+    pattern:  /
+    defaults: { _controller: ITSAtlasBundle:Default:index }
+
+array:
+    pattern:  /array
+    defaults: { _controller: ITSAtlasBundle:Default:array }
+
+xml:
+    pattern:  /xml
+    defaults: { _controller: ITSAtlasBundle:Default:xml }
+
+registration:
+     pattern:   /userform/
+     defaults:  { _controller: ITSAtlasBundle:Secured:register }
+
+registration_success:
+     pattern:   /userform/success
+     defaults:  { _controller: ITSAtlasBundle:Secured:registerSuccess }
+
+_security_check:
+     pattern:   /login_check
