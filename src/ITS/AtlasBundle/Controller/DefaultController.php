@@ -14,22 +14,34 @@ class DefaultController extends Controller {
 
     public function arrayAction(Request $request)
     {
-
+        $message_error = "";
+        $final_array = array();
         $default_array = array(
             'P/RU/711071320/RU/14JUN74/F/21JUN20/KOLENCHENKO/NINA -1KOLENCHENKO/NINAMRS',
-            'P/RU/722471093/RU/25JUN96/F/23JAN23/MUKHACHEVA/ANNA -1MUKHACHEVA/ANNAMRS',
+            'C/RU/7412424446/RU/28AUG58/M/28JUL26/GAZIL/VIKTOR/IVANOVICH -1GAZIL/VIKTORIVANOVICHMR',
             'P/RU/637670195/RU/17JUL03/M/08FEB18/KOLENCHENKO/ARTEM -1KOLENCHENKO/ARTEMMSTR'
         );
 
         foreach($default_array as $default_string)
         {
-            $a = explode('/', $default_string);
-            $b = explode(' -1', $a[8]);
-            $accost = substr($a[9], strlen($b[0]));
-            $final_array[] = array($b[1], $b[0], $accost);
+            if(preg_match("/[\/]([A-Z\/]{2,}) -1/", $default_string, $names) &&
+                preg_match('/(MR|MRS|MSTR)$/', $default_string, $accosts))
+            {
+                $name = preg_split('/\//', $names[1]);
+                $accost = $accosts[1];
+                // вывожу без отчества, как и было в задании, но вывести его не составляет труда, тк доступ к нему есть
+                // через переменную $name
+                $final_array[] = array($name[0], $name[1], $accost);
+            }
+            else
+            {
+                $message_error = "Неверный формат данных";
+            }
         }
+
         return $this->render('ITSAtlasBundle:Default:array.html.twig', array(
             'final_array' => $final_array,
+            'message_error' => $message_error,
         ));
     }
 
