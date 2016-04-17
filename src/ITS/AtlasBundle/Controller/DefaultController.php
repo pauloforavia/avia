@@ -33,6 +33,7 @@ class DefaultController extends Controller {
                 // через переменную $name
                 $final_array[] = array($name[0], $name[1], $accost);
 				//dgsdnsdgjds
+				//1234567890
             }
             else
             {
