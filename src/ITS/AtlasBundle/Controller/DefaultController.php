@@ -32,6 +32,7 @@ class DefaultController extends Controller {
                 // вывожу без отчества, как и было в задании, но вывести его не составляет труда, тк доступ к нему есть
                 // через переменную $name
                 $final_array[] = array($name[0], $name[1], $accost);
+				//dgsdnsdgjds
             }
             else
             {
